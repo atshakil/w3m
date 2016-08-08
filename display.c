@@ -19,15 +19,15 @@
 #define EFFECT_MARK_END           effect_mark_end()
 
 /*-
- * color: 
- *     0  black 
- *     1  red 
- *     2  green 
+ * color:
+ *     0  black
+ *     1  red
+ *     2  green
  *     3  yellow
- *     4  blue 
- *     5  magenta 
- *     6  cyan 
- *     7  white 
+ *     4  blue
+ *     5  magenta
+ *     6  cyan
+ *     7  white
  */
 
 #define EFFECT_ANCHOR_START_C       setfcolor(anchor_color)
@@ -177,7 +177,7 @@ fmTerm(void)
 }
 
 
-/* 
+/*
  * Initialize routine.
  */
 void
@@ -195,7 +195,7 @@ fmInit(void)
     fmInitialized = TRUE;
 }
 
-/* 
+/*
  * Display some lines.
  */
 static Line *cline = NULL;
@@ -324,42 +324,42 @@ make_lastline_message(Buffer *buf)
     else
 #endif				/* not USE_MOUSE */
 	msg = Strnew();
-    if (displayLineInfo && buf->currentLine != NULL && buf->lastLine != NULL) {
-	int cl = buf->currentLine->real_linenumber;
-	int ll = buf->lastLine->real_linenumber;
-	int r = (int)((double)cl * 100.0 / (double)(ll ? ll : 1) + 0.5);
-	Strcat(msg, Sprintf("%d/%d (%d%%)", cl, ll, r));
-    }
-    else
-	/* FIXME: gettextize? */
-	Strcat_charp(msg, "Viewing");
-#ifdef USE_SSL
-    if (buf->ssl_certificate)
-	Strcat_charp(msg, "[SSL]");
-#endif
-    Strcat_charp(msg, " <");
-    Strcat_charp(msg, buf->buffername);
-
-    if (s) {
-	int l = COLS - 3 - sl;
-	if (get_Str_strwidth(msg) > l) {
-#ifdef USE_M17N
-	    char *p;
-	    for (p = msg->ptr; *p; p += get_mclen(p)) {
-		l -= get_mcwidth(p);
-		if (l < 0)
-		    break;
-	    }
-	    l = p - msg->ptr;
-#endif
-	    Strtruncate(msg, l);
+	if (displayLineInfo && buf->currentLine != NULL && buf->lastLine != NULL) {
+int cl = buf->currentLine->real_linenumber;
+int ll = buf->lastLine->real_linenumber;
+int r = (int)((double)cl * 100.0 / (double)(ll ? ll : 1) + 0.5);
+Strcat(msg, Sprintf("%d/%d (%d%%)", cl, ll, r));
 	}
-	Strcat_charp(msg, "> ");
-	Strcat(msg, s);
-    }
-    else {
-	Strcat_charp(msg, ">");
-    }
+	else
+/* FIXME: gettextize? */
+//	Strcat_charp(msg, "Viewing");
+#ifdef USE_SSL
+	if (buf->ssl_certificate)
+Strcat_charp(msg, "[SSL]");
+#endif
+//     Strcat_charp(msg, " <");
+//     Strcat_charp(msg, buf->buffername);
+//
+//     if (s) {
+// 	int l = COLS - 3 - sl;
+// 	if (get_Str_strwidth(msg) > l) {
+// #ifdef USE_M17N
+// 	    char *p;
+// 	    for (p = msg->ptr; *p; p += get_mclen(p)) {
+// 		l -= get_mcwidth(p);
+// 		if (l < 0)
+// 		    break;
+// 	    }
+// 	    l = p - msg->ptr;
+// #endif
+// 	    Strtruncate(msg, l);
+// 	}
+// 	Strcat_charp(msg, "> ");
+// 	Strcat(msg, s);
+//     }
+//     else {
+// 	Strcat_charp(msg, ">");
+//     }
     return msg;
 }
 
@@ -1194,7 +1194,7 @@ record_err_message(char *s)
     }
 }
 
-/* 
+/*
  * List of error messages
  */
 Buffer *
@@ -1454,7 +1454,7 @@ cursorHome(Buffer *buf)
 }
 
 
-/* 
+/*
  * Arrange line,column and cursor position according to current line and
  * current position.
  */
